@@ -1,6 +1,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
 # 讀取資料
 url = 'https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/datasets/data/boston_house_prices.csv'
 df = pd.read_csv(url, skiprows=1)  # 跳過第一行註解
@@ -62,9 +67,6 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.tight_layout()
 plt.show()
 
-# 繪製房價散佈圖
-import pandas as pd
-import matplotlib.pyplot as plt
 
 # 讀取資料
 url = 'https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/datasets/data/boston_house_prices.csv'
@@ -99,3 +101,23 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 # 顯示圖表
 plt.tight_layout()
 plt.show()
+
+# 線性回歸模型預測房價
+x = df.drop('MEDV', axis=1)  # 特徵
+y = df['MEDV']  # 標籤
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+# 建立線性回歸模型
+model = LinearRegression()
+model.fit(x_train, y_train)
+
+# 評估表現
+y_pred = model.predict(x_test)
+mse = mean_squared_error(y_test, y_pred)
+asme = np.sqrt(mse)
+
+r2 = r2_score(y_test, y_pred)
+
+print("均方誤差: ", mse)
+print("平均均方誤差: ", asme)
+print("R2 分數: ", r2)
