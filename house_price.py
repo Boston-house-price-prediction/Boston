@@ -26,17 +26,7 @@ print(f"最低房價: {lowest_price}")
 print(f"平均房價: {average_price}")
 print(f"中位數房價: {median_price}")
 
-# 繪製房價分佈圖
-# 讀取資料
-url = 'https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/datasets/data/boston_house_prices.csv'
-df = pd.read_csv(url, skiprows=1)  # 跳過第一行註解
-
-# 確保房價資料是數值型
-df['MEDV'] = pd.to_numeric(df['MEDV'], errors='coerce')
-
-# 繪製直方圖
-url = 'https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/datasets/data/boston_house_prices.csv'
-df = pd.read_csv(url, skiprows=1)  # 跳過第一行註解
+# 繪製房價分佈圖和直方圖
 
 # 確保房價資料是數值型
 df['MEDV'] = pd.to_numeric(df['MEDV'], errors='coerce')
@@ -66,11 +56,6 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 # 顯示圖表
 plt.tight_layout()
 plt.show()
-
-
-# 讀取資料
-url = 'https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/sklearn/datasets/data/boston_house_prices.csv'
-df = pd.read_csv(url, skiprows=1)  # 跳過第一行註解
 
 # 確保 RM 和 MEDV 資料是數值型
 df['RM'] = pd.to_numeric(df['RM'], errors='coerce')
