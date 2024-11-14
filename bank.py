@@ -45,8 +45,8 @@ def plot_bar_chart(data, feature, target='y', bins=None, bin_labels=None):
     plt.show()
 
 # Define age bins and labels
-age_bins = range(0, 101, 20)
-age_labels = [f"{i}~{i+20}" for i in age_bins[:-1]]
+age_bins = range(0, 101, 10)
+age_labels = [f"{i}~{i+10}" for i in age_bins[:-1]]
 
 # Plot bar charts for each characteristic
 plot_bar_chart(train_data, 'age', bins=age_bins, bin_labels=age_labels)
