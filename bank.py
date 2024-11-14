@@ -37,7 +37,7 @@ def plot_bar_chart(data, feature, target='y', bins=None, bin_labels=None):
     if bins and bin_labels:
         data_copy[feature] = pd.cut(data_copy[feature], bins=bins, labels=bin_labels)
     data_copy[target] = data_copy[target].map({0: 'no', 1: 'yes'})  # Map 0 and 1 to 'no' and 'yes'
-    counts = data_copy.groupby([feature, target]).size().unstack().fillna(0)
+    counts = data_copy.groupby([feature, target], observed = False).size().unstack().fillna(0)
     counts.plot(kind='barh', stacked=True)  # Change to horizontal bar chart
     plt.title(f'Number of time deposits purchased by {feature}')
     plt.xlabel('Count')
